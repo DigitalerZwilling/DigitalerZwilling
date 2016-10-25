@@ -7,6 +7,7 @@ package DatenbankSchnittestelle;
 
 import DatenbankSchnittestelle.DatenKlassen.Artikel;
 import DatenbankSchnittestelle.DatenKlassen.Warentraeger;
+import DatenbankSchnittestelle.Qualifier.DB_Info;
 import DatenbankSchnittestelle.Qualifier.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,8 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
+import javax.inject.Inject;
 
 /**
  *
@@ -31,18 +31,19 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     //---------------------------------------------------------------------------
     //Datenbank verbindungs daten
     
-    private final String _DbURL="jdbc:derby://localhost:1527/db_DigitalerZwilling";   //URL
-    private final String _DbUser="db_user";                                            //User
-    private final String _DbPw="SB0222";                                              //Passswort
+   // private final String _DbURL="jdbc:derby://localhost:1527/db_DigitalerZwilling";   //URL
+   // private final String _DbUser="db_user";                                            //User
+   // private final String _DbPw="SB0222";                                              //Passswort
     //---------------------------------------------------------------------------
-    private Connection db;   // muss noch irgendwie geschlossen werden(Destruktor?)
+    
+    @Inject @DB_Info(
+            db_name="jdbc:derby://localhost:1527/db_DigitalerZwilling",
+            db_user="db_user",
+            db_pw="SB0222"
+    ) private Connection db;   
 
     public DatenbankSchnittstelle() {
-        try {
-            db= DriverManager.getConnection(this._DbURL,this._DbUser,this._DbPw);
-        } catch (SQLException ex) {
-            Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
     @PostConstruct
