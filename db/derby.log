@@ -1,7 +1,7 @@
-Tue Oct 25 13:26:51 CEST 2016 : Apache Derby Network Server 10.11.1.2 - (1629631) wurde gestartet und ist bereit, Verbindungen auf Port 1527 zu akzeptieren.
+Tue Oct 25 14:32:49 CEST 2016 : Apache Derby Network Server 10.11.1.2 - (1629631) wurde gestartet und ist bereit, Verbindungen auf Port 1527 zu akzeptieren.
 ----------------------------------------------------------------
-Tue Oct 25 13:28:20 CEST 2016:
-Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): Instanz a816c00e-0157-fb97-c92f-00001cbd415d
+Tue Oct 25 14:33:05 CEST 2016:
+Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): Instanz a816c00e-0157-fbd4-2f84-00001cbd415d
 für Datenbankverzeichnis C:\Users\user\Documents\GitHub\DigitalerZwilling\DigitalerZwilling\db\db_DigitalerZwilling mit Class Loader sun.misc.Launcher$AppClassLoader@1d44bcfa
 Geladen aus file:/C:/Program%20Files/Java/jdk1.8.0_102/db/lib/derby.jar
 java.vendor=Oracle Corporation

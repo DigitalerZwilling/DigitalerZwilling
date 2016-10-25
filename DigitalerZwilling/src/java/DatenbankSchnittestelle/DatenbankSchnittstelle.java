@@ -55,11 +55,9 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
         List<Warentraeger> back = new ArrayList<>();
         Statement stmt = this.db.createStatement();
         ResultSet rs;
-        rs = stmt.executeQuery("SELECT * from Warentraerger ");//where TIPP.USERNAME='"+username+"')=0");
+        rs = stmt.executeQuery("SELECT * from Warentraerger where id_artikel="+artikelID);//where TIPP.USERNAME='"+username+"')=0");
         while(rs.next()){
-                //hilf = new Match(rs.getInt("ID"), rs.getString("MANNSCHAFT1"), rs.getString("MANNSCHAFT2"), rs.getTimestamp("START").getTime());
-               // ergebnis.add(hilf);
-                
+                back.add(new Warentraeger());
         }          
         return back;
         
