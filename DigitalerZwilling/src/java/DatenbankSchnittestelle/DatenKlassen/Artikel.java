@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author user
+ * @author chris
  */
 public class Artikel {
     

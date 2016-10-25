@@ -6,7 +6,9 @@
 package Servlets;
 
 import DatenbankSchnittestelle.DatenKlassen.Artikel;
+import DatenbankSchnittestelle.DatenSchnittstelle;
 import DatenbankSchnittestelle.DatenbankSchnittstelle;
+import DatenbankSchnittestelle.Qualifier.db;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -22,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author user
  */
 public class index extends HttpServlet {
-    @Inject DatenbankSchnittstelle data;
+    @Inject @db DatenSchnittstelle data;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,7 +48,7 @@ public class index extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet test at " + request.getContextPath() + "</h1>");
             try {
-                Artikel a=data.getArtikel(0);
+                Artikel a=data.getArtikel(1);
             } catch (Exception ex) {
                 Logger.getLogger(index.class.getName()).log(Level.SEVERE, null, ex);
             }

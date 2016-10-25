@@ -7,7 +7,7 @@ package DatenbankSchnittestelle.DatenKlassen;
 
 /**
  *
- * @author user
+ * @author chris
  */
 public class Gelenk {
     

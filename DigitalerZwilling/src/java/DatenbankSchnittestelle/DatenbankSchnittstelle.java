@@ -7,6 +7,7 @@ package DatenbankSchnittestelle;
 
 import DatenbankSchnittestelle.DatenKlassen.Artikel;
 import DatenbankSchnittestelle.DatenKlassen.Warentraeger;
+import DatenbankSchnittestelle.Qualifier.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,12 +19,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
 /**
  *
- * @author user
+ * @author chris
  */
-@ApplicationScoped
+@ApplicationScoped @db
 public class DatenbankSchnittstelle implements DatenSchnittstelle{
     //---------------------------------------------------------------------------
     //Datenbank verbindungs daten
@@ -44,7 +47,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     
     @PostConstruct
     private void init(){
-        
+        ;
     }
 
     @Override
@@ -70,6 +73,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
         Statement stmt = this.db.createStatement();
         ResultSet rs;
         rs = stmt.executeQuery("SELECT * from Artikel Where id_artikel="+artikelID);
+        rs.next();
         Artikel a=new Artikel(/*rs.getB("id_artikel")*/1,rs.getString("bezeichnung"),rs.getTimestamp("zeitstempel"),"");
         rs.close();
         stmt.close();
