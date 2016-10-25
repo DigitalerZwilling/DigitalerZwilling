@@ -5,7 +5,8 @@
  */
 package DatenbankSchnittestelle.DatenKlassen;
 
-import DatenbankSchnittestelle.DatenbankSchnittstelle;
+import DatenbankSchnittestelle.DatenSchnittstelle;
+import DatenbankSchnittestelle.Qualifier.db;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,12 +20,12 @@ import javax.inject.Inject;
  */
 public class Artikel {
     
-    @Inject DatenbankSchnittstelle data;
+    @Inject @db private DatenSchnittstelle data;
     private long id_Artikel;
     private String bezeichnung;
     private Timestamp zeit;
     private String userparameter;
-    private List<Warentraeger> liegt_auf_Warentraeger;
+    //private List<Warentraeger> liegt_auf_Warentraeger;
 
     public Artikel(long id_Artikel, String bezeichnung, Timestamp zeit, String userparameter) {
         this.id_Artikel = id_Artikel;
@@ -32,15 +33,25 @@ public class Artikel {
         this.zeit = zeit;  
         this.userparameter = userparameter;
     }
-    
-    @PostConstruct
-    private void init(){
-        try {
-            this.liegt_auf_Warentraeger=data.artikel_auf_Warentraegern(id_Artikel);
-        } catch (Exception ex) {
-            Logger.getLogger(Artikel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+
+    public long getId_Artikel() {
+        return id_Artikel;
+    }
+
+    public String getBezeichnung() {
+        return bezeichnung;
+    }
+
+    public Timestamp getZeit() {
+        return zeit;
+    }
+
+    public String getUserparameter() {
+        return userparameter;
+    }
+
+    public List<Warentraeger> getLiegt_auf_Warentraeger() throws Exception {
+        return data._Artikel_Warentraeger(id_Artikel);
     }
     
     
