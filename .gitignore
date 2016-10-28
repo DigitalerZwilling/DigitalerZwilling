@@ -55,6 +55,3 @@ dist/
 nbdist/
 .nb-gradle/
 /DigitalerZwilling/nbproject/private/
-db/db_DigitalerZwilling/log/log.ctrl
-*.dat
-db/db_DigitalerZwilling/log/logmirror.ctrl
