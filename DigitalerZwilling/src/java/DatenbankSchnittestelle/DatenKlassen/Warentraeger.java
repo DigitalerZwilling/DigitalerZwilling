@@ -16,7 +16,7 @@ import javax.inject.Inject;
  * @author user
  */
 public class Warentraeger {
-    private DatenSchnittstelle data;
+    @Inject @db private DatenSchnittstelle data;
     private long id_Warentraeger;
     private String bezeichnung;
     private int stoerung;
@@ -26,8 +26,7 @@ public class Warentraeger {
     private Timestamp zeitstempel;
     private String user_Parameter;
 
-    public Warentraeger(DatenSchnittstelle data, long id_Warentraeger, String bezeichnung, int stoerung, String rFID_inhalt, int montagezustand, int abstand_mm, Timestamp zeitstempel, String user_Parameter) {
-        this.data = data;
+    public Warentraeger(long id_Warentraeger, String bezeichnung, int stoerung, String rFID_inhalt, int montagezustand, int abstand_mm, Timestamp zeitstempel, String user_Parameter) {
         this.id_Warentraeger = id_Warentraeger;
         this.bezeichnung = bezeichnung;
         this.stoerung = stoerung;
@@ -37,8 +36,6 @@ public class Warentraeger {
         this.zeitstempel = zeitstempel;
         this.user_Parameter = user_Parameter;
     }
-
-    
 
     public long getId_Warentraeger() {
         return id_Warentraeger;

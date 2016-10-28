@@ -60,14 +60,13 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
 
     @Override
     public List<Warentraeger> _Artikel_Warentraeger(long artikelID)  {
-        
         try {
             List<Warentraeger> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Warentraerger where id_artikel="+artikelID);//where TIPP.USERNAME='"+username+"')=0");
             while(rs.next()){
-                back.add(new Warentraeger(this,
+                back.add(new Warentraeger(
                     rs.getLong("id_warentraeger"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -88,6 +87,24 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
         }
     }
 
+    @Override
+    public Artikel getArtikel(long artikelID)  {
+        try {
+            System.out.println("test");
+            Statement stmt = this.db.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery("SELECT * from Artikel Where id_artikel="+artikelID);
+            rs.next();
+            Artikel a=new Artikel(/*rs.getB("id_artikel")*/1,rs.getString("bezeichnung"),rs.getTimestamp("zeitstempel"),"");
+            rs.close();
+            stmt.close();
+            return a;
+            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        } catch (SQLException ex) {
+            Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
+            return null; // durch Exception ersetzten
+        }
+    }
 
     @Override
     public List<Artikel> _Warentraeger_Artikel(long warentraegerID) {
@@ -183,25 +200,6 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     public Roboter _Gelenk_Roboter(long gelenkID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    @Override
-    public Artikel getArtikel(long artikelID)  {
-        try {
-            System.out.println("test");
-            Statement stmt = this.db.createStatement();
-            ResultSet rs;
-            rs = stmt.executeQuery("SELECT * from Artikel Where id_artikel="+artikelID);
-            rs.next();
-            Artikel a=new Artikel(this,1,rs.getString("bezeichnung"),rs.getTimestamp("zeitstempel"),"");
-            rs.close();
-            stmt.close();
-            return a;
-            //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        } catch (SQLException ex) {
-            Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
-            return null; // durch Exception ersetzten
-        }
-    }
 
     @Override
     public Warentraeger getWarentraeger(long warentraegerID) {
@@ -241,11 +239,6 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     @Override
     public Gelenk getGelenk(long gelenkID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String toString() {
-        return "DatenbankSchnittstelle{" + "db=" + db + '}';
     }
     
 }

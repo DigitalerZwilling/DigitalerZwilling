@@ -6,13 +6,11 @@
 package Servlets;
 
 import DatenbankSchnittestelle.DatenKlassen.Artikel;
-import DatenbankSchnittestelle.DatenKlassen.Warentraeger;
 import DatenbankSchnittestelle.DatenSchnittstelle;
 import DatenbankSchnittestelle.DatenbankSchnittstelle;
 import DatenbankSchnittestelle.Qualifier.db;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -51,8 +49,6 @@ public class index extends HttpServlet {
             out.println("<h1>Servlet test at " + request.getContextPath() + "</h1>");
             try {
                 Artikel a=data.getArtikel(1);
-                //List<Warentraeger> b = a.getLiegt_auf_Warentraeger();
-                System.out.println(a.toString());
             } catch (Exception ex) {
                 Logger.getLogger(index.class.getName()).log(Level.SEVERE, null, ex);
             }
