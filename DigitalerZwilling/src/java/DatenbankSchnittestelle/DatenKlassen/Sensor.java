@@ -64,4 +64,10 @@ public class Sensor {
     public Sektor getSektor(){
         return this.data._Sensor_Sektor(id_Sensor);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"  :  Sensor{" + "data=" + data + ", id_Sensor=" + id_Sensor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", phy_adresse=" + phy_adresse + ", zustand=" + zustand + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+    }
+    
 }

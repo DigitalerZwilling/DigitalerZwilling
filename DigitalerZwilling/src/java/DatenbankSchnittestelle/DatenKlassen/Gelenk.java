@@ -58,5 +58,10 @@ public class Gelenk {
     public Roboter getRoboter(){
         return this.data._Gelenk_Roboter(id_Gelenk);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"  :  Gelenk{" + "data=" + data + ", id_Gelenk=" + id_Gelenk + ", gelenktyp=" + gelenktyp + ", nummer=" + nummer + ", gelenkstellung=" + gelenkstellung + ", zeitstempel=" + zeitstempel + ", user_Paameter=" + user_Paameter + '}';
+    }
    
 }

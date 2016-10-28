@@ -95,4 +95,10 @@ public class Sektor {
     public List<Warentraeger> getWarentraeger(){
         return this.data._Sektor_Warentraeger(id_Sektor);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"  :  Sektor{" + "data=" + data + ", id_Sektor=" + id_Sektor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", x=" + x + ", y=" + y + ", z=" + z + ", ausrichtung=" + ausrichtung + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+    }
+    
 }

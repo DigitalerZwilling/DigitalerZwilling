@@ -80,4 +80,10 @@ public class Roboter {
     public List<Sektor> getSektor(){
         return this.data._Roboter_Sektor(id_Roboter);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"  :  Roboter{" + "data=" + data + ", id_Roboter=" + id_Roboter + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", x=" + x + ", y=" + y + ", z=" + z + ", ausrichtung=" + ausrichtung + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+    }
+    
 }

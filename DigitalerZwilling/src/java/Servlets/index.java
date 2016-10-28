@@ -52,7 +52,11 @@ public class index extends HttpServlet {
             try {
                 Artikel a=data.getArtikel(1);
                 //List<Warentraeger> b = a.getLiegt_auf_Warentraeger();
-                System.out.println(a.toString());
+                out.println(this.data.toString());
+                out.println("<br><br>");
+                out.println(a.toString());
+                out.println("<br><br>");
+                out.println(a.getLiegt_auf_Warentraeger().get(0).toString());
             } catch (Exception ex) {
                 Logger.getLogger(index.class.getName()).log(Level.SEVERE, null, ex);
             }

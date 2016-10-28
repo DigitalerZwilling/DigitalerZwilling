@@ -65,7 +65,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             List<Warentraeger> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
-            rs = stmt.executeQuery("SELECT * from Warentraerger where id_artikel="+artikelID);//where TIPP.USERNAME='"+username+"')=0");
+            rs = stmt.executeQuery("SELECT * from Warentraeger w,Artikel_Warentraeger a where a.id_artikel="+artikelID+" and a.id_warentraeger=w.id_warentraeger" );//where TIPP.USERNAME='"+username+"')=0");
             while(rs.next()){
                 back.add(new Warentraeger(this,
                     rs.getLong("id_warentraeger"),
@@ -76,8 +76,10 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
                     rs.getInt("abstand_mm"),
                     rs.getTimestamp("zeitstempel"),
                     rs.getString("user_parameter")
-                ));
+                ));  
             }
+            rs.close();
+            stmt.close();
             return back;
             
             
@@ -192,7 +194,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Artikel Where id_artikel="+artikelID);
             rs.next();
-            Artikel a=new Artikel(this,1,rs.getString("bezeichnung"),rs.getTimestamp("zeitstempel"),"");
+            Artikel a=new Artikel(this,1,rs.getString("bezeichnung"),rs.getTimestamp("zeitstempel"),rs.getString("user_parameter"));
             rs.close();
             stmt.close();
             return a;
@@ -245,7 +247,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
 
     @Override
     public String toString() {
-        return "DatenbankSchnittstelle{" + "db=" + db + '}';
+        return super.toString()+"  :  DatenbankSchnittstelle{" + "db=" + db + '}';
     }
     
 }

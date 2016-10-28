@@ -62,6 +62,11 @@ public class Artikel{
     public List<Warentraeger> getLiegt_auf_Warentraeger() throws Exception {
         return data._Artikel_Warentraeger(id_Artikel);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"  :  Artikel{" + "data=" + data + ", id_Artikel=" + id_Artikel + ", bezeichnung=" + bezeichnung + ", zeit=" + zeit + ", user_Parameter=" + user_Parameter + '}';
+    }
    
     
     

@@ -80,4 +80,10 @@ public class Warentraeger {
     public List<Transportband> getTransportband(){
         return this.data._Warentraeger_Transportband(id_Warentraeger);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"  :  Warentraeger{" + "data=" + data + ", id_Warentraeger=" + id_Warentraeger + ", bezeichnung=" + bezeichnung + ", stoerung=" + stoerung + ", rFID_inhalt=" + rFID_inhalt + ", montagezustand=" + montagezustand + ", abstand_mm=" + abstand_mm + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+    }
+    
 }

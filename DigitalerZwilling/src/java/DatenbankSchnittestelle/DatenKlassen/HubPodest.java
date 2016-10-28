@@ -56,4 +56,10 @@ public class HubPodest {
     public Sektor getSektor(){
         return data._HubPodest_Sektor(id_HubPodest);
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+"  :  HubPodest{" + "data=" + data + ", id_HubPodest=" + id_HubPodest + ", oben=" + oben + ", unten=" + unten + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+    }
+    
 }

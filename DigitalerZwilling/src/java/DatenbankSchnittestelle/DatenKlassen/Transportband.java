@@ -71,4 +71,10 @@ public class Transportband {
     public List<Warentraeger> getWarentraeger(){
         return this.data._Transportband_Warentraeger(id_Sensor);
     } 
+
+    @Override
+    public String toString() {
+        return super.toString()+"  :  Transportband{" + "data=" + data + ", id_Sensor=" + id_Sensor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", laenge=" + laenge + ", geschwindigkeit=" + geschwindigkeit + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+    }
+    
 }
