@@ -6,9 +6,7 @@
 package DatenbankSchnittestelle.DatenKlassen;
 
 import DatenbankSchnittestelle.DatenSchnittstelle;
-import DatenbankSchnittestelle.Qualifier.db;
 import java.sql.Timestamp;
-import javax.inject.Inject;
 
 /**
  *

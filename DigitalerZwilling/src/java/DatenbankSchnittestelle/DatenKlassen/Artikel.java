@@ -6,15 +6,8 @@
 package DatenbankSchnittestelle.DatenKlassen;
 
 import DatenbankSchnittestelle.DatenSchnittstelle;
-import DatenbankSchnittestelle.Qualifier.db;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Any;
-import javax.inject.Inject;
 
 /**
  *
@@ -41,11 +34,7 @@ public class Artikel{
 
     
     
-    @PostConstruct
-    public void init(){
-        System.out.println("hmm");
-        System.out.println(this.data.toString());
-    }
+
 
     
 
