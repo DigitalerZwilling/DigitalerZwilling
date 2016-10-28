@@ -16,15 +16,15 @@ import javax.inject.Inject;
  * @author user
  */
 public class Warentraeger {
-    private DatenSchnittstelle data;
-    private long id_Warentraeger;
-    private String bezeichnung;
-    private int stoerung;
-    private String rFID_inhalt;
-    private int montagezustand;
-    private int abstand_mm;
-    private Timestamp zeitstempel;
-    private String user_Parameter;
+    private final DatenSchnittstelle data;
+    private final long id_Warentraeger;
+    private final String bezeichnung;
+    private final int stoerung;
+    private final String rFID_inhalt;
+    private final int montagezustand;
+    private final int abstand_mm;
+    private final Timestamp zeitstempel;
+    private final String user_Parameter;
 
     public Warentraeger(DatenSchnittstelle data, long id_Warentraeger, String bezeichnung, int stoerung, String rFID_inhalt, int montagezustand, int abstand_mm, Timestamp zeitstempel, String user_Parameter) {
         this.data = data;
