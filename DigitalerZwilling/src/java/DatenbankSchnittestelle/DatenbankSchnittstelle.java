@@ -65,7 +65,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             List<Warentraeger> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
-            rs = stmt.executeQuery("SELECT * from Warentraeger w,Artikel_Warentraeger a where a.id_artikel="+artikelID+" and a.id_warentraeger=w.id_warentraeger" );//where TIPP.USERNAME='"+username+"')=0");
+            rs = stmt.executeQuery("SELECT * from Warentraeger O,Artikel_Warentraeger R where R.id_artikel="+artikelID+" and R.id_warentraeger=O.id_warentraeger" );//where TIPP.USERNAME='"+username+"')=0");
             while(rs.next()){
                 back.add(new Warentraeger(this,
                     rs.getLong("id_warentraeger"),
@@ -93,22 +93,112 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
 
     @Override
     public List<Artikel> _Warentraeger_Artikel(long warentraegerID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<Artikel> back = new ArrayList<>();
+            Statement stmt = this.db.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery("SELECT * from Artikel O,Artikel_Warentraeger R where R.id_warentraeger="+warentraegerID+" and R.id_artikel=O.id_artikel" );//where TIPP.USERNAME='"+username+"')=0");
+            while(rs.next()){
+                back.add(new Artikel(this,
+                    rs.getLong("id_artikel"),
+                    rs.getString("bezeichnung"),
+                    rs.getTimestamp("zeitstempel"),
+                    rs.getString("user_parameter")
+                ));  
+            }
+            rs.close();
+            stmt.close();
+            return back;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
+            return null; // durch Exception ersetzten
+        }
     }
 
     @Override
     public List<Transportband> _Warentraeger_Transportband(long warentraegerID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<Transportband> back = new ArrayList<>();
+            Statement stmt = this.db.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery("SELECT * from Transportband O,Transportband_Warentraeger R where R.id_warentraeger="+warentraegerID+" and R.id_transportband=O.id_transportband" );
+            while(rs.next()){
+                back.add(new Transportband(this,
+                    rs.getLong("id_transportband"),
+                    rs.getString("bezeichnung"),
+                    rs.getInt("stoerung"),
+                    rs.getInt("laenge"),
+                    rs.getInt("geschwindigkeit"),
+                    rs.getTimestamp("zeitstempel"),
+                    rs.getString("user_parameter")
+                ));  
+            }
+            rs.close();
+            stmt.close();
+            return back;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
+            return null; // durch Exception ersetzten
+        }
     }
+    
 
     @Override
     public List<Sektor> _Warentraeger_Sektor(long warentraegerID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<Sektor> back = new ArrayList<>();
+            Statement stmt = this.db.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery("SELECT * from Sektor O,Sektor_Warentraeger R where R.id_warentraeger="+warentraegerID+" and R.id_sektor=O.id_sektor" );
+            while(rs.next()){
+                back.add(new Sektor(this,
+                    rs.getLong("id_sektor"),
+                    rs.getString("bezeichnung"),
+                    rs.getInt("stoerung"),
+                    rs.getInt("position_X"),
+                    rs.getInt("position_Y"),
+                    rs.getInt("position_Z"),
+                    rs.getInt("position_Ausrichtung"),
+                    rs.getTimestamp("zeitstempel"),
+                    rs.getString("user_parameter")
+                ));  
+            }
+            rs.close();
+            stmt.close();
+            return back;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
+            return null; // durch Exception ersetzten
+        }
     }
 
     @Override
     public List<Warentraeger> _Transportband_Warentraeger(long transportbandID) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            List<Warentraeger> back = new ArrayList<>();
+            Statement stmt = this.db.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery("SELECT * from Warentraeger O,Transportband_Warentraeger R where R.id_transportband="+transportbandID+" and R.id_warentraeger=O.id_warentraeger" );
+            while(rs.next()){
+                back.add(new Warentraeger(this,
+                    rs.getLong("id_warentraeger"),
+                    rs.getString("bezeichnung"),
+                    rs.getInt("stoerung"),
+                    rs.getString("RFID_inhalt"),
+                    rs.getInt("montagezustand"),
+                    rs.getInt("abstand_mm"),
+                    rs.getTimestamp("zeitstempel"),
+                    rs.getString("user_parameter")
+                ));  
+            }
+            rs.close();
+            stmt.close();
+            return back;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
+            return null; // durch Exception ersetzten
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
