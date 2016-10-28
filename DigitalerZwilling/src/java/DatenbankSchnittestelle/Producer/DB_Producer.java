@@ -8,17 +8,17 @@ package DatenbankSchnittestelle.Producer;
 
 
 import DatenbankSchnittestelle.Qualifier.DB_Info;
-import java.io.Serializable;
-import java.lang.annotation.Annotation;
+//import java.io.Serializable;
+//import java.lang.annotation.Annotation;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+//import javax.annotation.PostConstruct;
+//import javax.annotation.PreDestroy;
 import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Any;
+//import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
@@ -37,7 +37,7 @@ public class DB_Producer  {
     
     @Produces @DB_Info
     private Connection produceCon(InjectionPoint in)   {
-        System.out.println("Producer_1");
+        System.out.println("Producer_Datenbankverbindung");
         try {
             
             String member_name=in.getMember().getName();
