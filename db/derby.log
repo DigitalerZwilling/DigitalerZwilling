@@ -97,3 +97,6 @@ ERROR XJ004: Datenbank 'db_DigitalerZwilling' wurde nicht gefunden.
 ============= end nested exception, level (1) ===========
 Cleanup action completed
 Fri Oct 28 12:10:15 CEST 2016 Thread[DRDAConnThread_2,5,main] (DATABASE = db_DigitalerZwilling), (DRDAID = {2}), Datenbank 'db_DigitalerZwilling' wurde nicht gefunden.
+----------------------------------------------------------------
+Fri Oct 28 12:13:07 CEST 2016: Derby-Engine wird heruntergefahren
+----------------------------------------------------------------
