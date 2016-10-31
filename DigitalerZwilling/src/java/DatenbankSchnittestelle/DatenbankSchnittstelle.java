@@ -59,7 +59,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Warentraeger> _Artikel_Warentraeger(long artikelID)  {
+    public List<Long> getArtikelWarentraegerIDs(long artikelID)  {
         
         try {
             List<Warentraeger> back = new ArrayList<>();
@@ -67,7 +67,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Warentraeger O,Artikel_Warentraeger R where R.id_artikel="+artikelID+" and R.id_warentraeger=O.id_warentraeger" );//where TIPP.USERNAME='"+username+"')=0");
             while(rs.next()){
-                back.add(new Warentraeger(this,
+                back.add(new Warentraeger(
                     rs.getLong("id_warentraeger"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -80,7 +80,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
             
             
             //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -92,14 +92,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
 
 
     @Override
-    public List<Artikel> _Warentraeger_Artikel(long warentraegerID) {
+    public List<Long> getWarentraegerArtikelIDs(long warentraegerID) {
         try {
             List<Artikel> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Artikel O,Artikel_Warentraeger R where R.id_warentraeger="+warentraegerID+" and R.id_artikel=O.id_artikel" );//where TIPP.USERNAME='"+username+"')=0");
             while(rs.next()){
-                back.add(new Artikel(this,
+                back.add(new Artikel(
                     rs.getLong("id_artikel"),
                     rs.getString("bezeichnung"),
                     rs.getTimestamp("zeitstempel"),
@@ -108,7 +108,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -116,14 +116,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Transportband> _Warentraeger_Transportband(long warentraegerID) {
+    public List<Long> getWarentraegerTransportbandID(long warentraegerID) {
         try {
             List<Transportband> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Transportband O,Transportband_Warentraeger R where R.id_warentraeger="+warentraegerID+" and R.id_transportband=O.id_transportband" );
             while(rs.next()){
-                back.add(new Transportband(this,
+                back.add(new Transportband(
                     rs.getLong("id_transportband"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -135,7 +135,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -144,14 +144,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     
 
     @Override
-    public List<Sektor> _Warentraeger_Sektor(long warentraegerID) {
+    public List<Long> getWarentraegerSektorID(long warentraegerID) {
         try {
             List<Sektor> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Sektor O,Sektor_Warentraeger R where R.id_warentraeger="+warentraegerID+" and R.id_sektor=O.id_sektor" );
             while(rs.next()){
-                back.add(new Sektor(this,
+                back.add(new Sektor(
                     rs.getLong("id_sektor"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -165,7 +165,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -173,14 +173,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Warentraeger> _Transportband_Warentraeger(long transportbandID) {
+    public List<Long> getTransportbandWarentraegerIDs(long transportbandID) {
         try {
             List<Warentraeger> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Warentraeger O,Transportband_Warentraeger R where R.id_transportband="+transportbandID+" and R.id_warentraeger=O.id_warentraeger" );
             while(rs.next()){
-                back.add(new Warentraeger(this,
+                back.add(new Warentraeger(
                     rs.getLong("id_warentraeger"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -193,7 +193,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -202,14 +202,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public Sektor _Transportband_vor_Sektor(long transportbandID) {
+    public Long getTransportbandVorSektorID(long transportbandID) {
         try {
             Sektor back;
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Transportband, Sektor where id_transportband="+transportbandID+" and id_sektor_nach=id_sektor" );
             rs.next();
-            back = new Sektor(this,
+            back = new Sektor(
                 rs.getLong("id_sektor"),
                 rs.getString("bezeichnung"),
                 rs.getInt("stoerung"),
@@ -222,7 +222,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             );
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -230,14 +230,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public Sektor _Transportband_nach_Sektor(long transportbandID) {
+    public Long getTransportbandNachSektorID(long transportbandID) {
         try {
             Sektor back;
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Transportband, Sektor where id_transportband="+transportbandID+" and id_sektor_vor=id_sektor" );
             rs.next();
-            back = new Sektor(this,
+            back = new Sektor(
                 rs.getLong("id_sektor"),
                 rs.getString("bezeichnung"),
                 rs.getInt("stoerung"),
@@ -250,7 +250,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             );
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -258,14 +258,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Warentraeger> _Sektor_Warentraeger(long sektorID) {
+    public List<Long> getSektorWarentraegerIDs(long sektorID) {
         try {
             List<Warentraeger> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Warentraeger O,Sektor_Warentraeger R where R.id_sektor="+sektorID+" and R.id_warentraeger=O.id_warentraeger" );
             while(rs.next()){
-                back.add(new Warentraeger(this,
+                back.add(new Warentraeger(
                     rs.getLong("id_warentraeger"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -278,7 +278,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -286,14 +286,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Transportband> _Sektor_vor_Transportband(long sektorID) {
+    public List<Long> getSektorVorTransportbandIDs(long sektorID) {
         try {
             List<Transportband> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Transportband O where O.id_sektor_vor="+sektorID);
             while(rs.next()){
-                back.add(new Transportband(this,
+                back.add(new Transportband(
                     rs.getLong("id_transportband"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -305,7 +305,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -313,14 +313,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Transportband> _Sektor_nach_Transportband(long sektorID) {
+    public List<Long> getSektorNachTransportbandIDs(long sektorID) {
         try {
             List<Transportband> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Transportband O where O.id_sektor_nach="+sektorID);
             while(rs.next()){
-                back.add(new Transportband(this,
+                back.add(new Transportband(
                     rs.getLong("id_transportband"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -332,7 +332,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -340,14 +340,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<HubPodest> _Sektor_HubPodest(long sektorID) {
+    public List<Long> getSektorHubPodestIDs(long sektorID) {
         try {
             List<HubPodest> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from HubPodest O where O.id_sektor="+sektorID );
             while(rs.next()){
-                back.add(new HubPodest(this,
+                back.add(new HubPodest(
                     rs.getLong("id_hubpodest"),
                     rs.getInt("oben"),
                     rs.getInt("unten"),
@@ -357,7 +357,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -365,14 +365,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<HubQuerPodest> _Sektor_HubQuerPodest(long sektorID) {
+    public List<Long> getSektorHubQuerPodestIDs(long sektorID) {
         try {
             List<HubQuerPodest> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from HubQuerPodest O where O.id_sektor="+sektorID );
             while(rs.next()){
-                back.add(new HubQuerPodest(this,
+                back.add(new HubQuerPodest(
                     rs.getLong("id_hubquerpodest"),
                     rs.getInt("oben"),
                     rs.getInt("unten"),
@@ -384,7 +384,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -392,14 +392,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Sensor> _Sektor_Sensor(long sensorID) {
+    public List<Long> getSektorSensorIDs(long sensorID) {
         try {
             List<Sensor> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Sensor O where O.id_sensor="+sensorID );
             while(rs.next()){
-                back.add(new Sensor(this,
+                back.add(new Sensor(
                     rs.getLong("id_sensor"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -411,7 +411,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -419,14 +419,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Roboter> _Sektor_Roboter(long sektorID) {
+    public List<Long> getSektorRoboterIDs(long sektorID) {
         try {
             List<Roboter> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Roboter O,Roboter_Sektor R where R.id_sektor="+sektorID+" and R.id_roboter=O.id_roboter" );
             while(rs.next()){
-                back.add(new Roboter(this,
+                back.add(new Roboter(
                     rs.getLong("id_roboter"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -440,7 +440,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -448,14 +448,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public Sektor _HubPodest_Sektor(long hubPodestId) {
+    public Long getHubPodestSektorID(long hubPodestId) {
         try {
             Sektor back;
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from HubPodest,Sektor where id_hubpodest="+hubPodestId+" and id_sektor=id_sektor" );
             rs.next();
-            back = new Sektor(this,
+            back = new Sektor(
                 rs.getLong("id_sektor"),
                 rs.getString("bezeichnung"),
                 rs.getInt("stoerung"),
@@ -468,7 +468,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             );
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -476,14 +476,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public Sektor _HubQuerPodest_Sektor(long hubQuerPodestId) {
+    public Long getHubQuerPodestSektorID(long hubQuerPodestId) {
         try {
             Sektor back;
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from HubQuerPodest,Sektor where id_hubquerpodest="+hubQuerPodestId+" and id_sektor=id_sektor" );
             rs.next();
-            back = new Sektor(this,
+            back = new Sektor(
                 rs.getLong("id_sektor"),
                 rs.getString("bezeichnung"),
                 rs.getInt("stoerung"),
@@ -496,7 +496,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             );
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -504,14 +504,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public Sektor _Sensor_Sektor(long sensorID) {
+    public Long getSensorSektorID(long sensorID) {
         try {
             Sektor back;
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Sensor O,Sektor R where O.id_sensor="+sensorID+" and O.id_sektor=R.id_sektor" );
             rs.next();
-            back = new Sektor(this,
+            back = new Sektor(
                 rs.getLong("id_sektor"),
                 rs.getString("bezeichnung"),
                 rs.getInt("stoerung"),
@@ -524,7 +524,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             );
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -532,14 +532,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Sektor> _Roboter_Sektor(long roboterID) {
+    public List<Long> getRoboterSektorID(long roboterID) {
         try {
             List<Sektor> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Roboter O,Roboter_Sektor R where R.id_roboter="+roboterID+" and R.id_sektor=O.id_sektor" );
             while(rs.next()){
-                back.add(new Sektor(this,
+                back.add(new Sektor(
                     rs.getLong("id_sektor"),
                     rs.getString("bezeichnung"),
                     rs.getInt("stoerung"),
@@ -553,7 +553,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -561,14 +561,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public List<Gelenk> _Roboter_Gelenk(long roboterID) {
+    public List<Long> getRoboterGelenkIDs(long roboterID) {
         try {
             List<Gelenk> back = new ArrayList<>();
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Gelenk O where O.id_roboter="+roboterID );
             while(rs.next()){
-                back.add(new Gelenk(this,
+                back.add(new Gelenk(
                     rs.getLong("id_gelenk"),
                     rs.getString("typ"),
                     rs.getInt("nummer"),
@@ -579,7 +579,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             }
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -587,14 +587,14 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
     }
 
     @Override
-    public Roboter _Gelenk_Roboter(long gelenkID) {
+    public Long getGelenkRoboterID(long gelenkID) {
         try {
             Roboter back;
             Statement stmt = this.db.createStatement();
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Roboter O,Gelenk R where R.id_gelenk="+gelenkID+" and R.id_roboter=O.id_roboter" );
             rs.next();
-            back = new Roboter(this,
+            back = new Roboter(
                 rs.getLong("id_roboter"),
                 rs.getString("bezeichnung"),
                 rs.getInt("stoerung"),
@@ -608,7 +608,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             
             rs.close();
             stmt.close();
-            return back;
+            return null;
         } catch (SQLException ex) {
             Logger.getLogger(DatenbankSchnittstelle.class.getName()).log(Level.SEVERE, null, ex);
             return null; // durch Exception ersetzten
@@ -623,7 +623,7 @@ public class DatenbankSchnittstelle implements DatenSchnittstelle{
             ResultSet rs;
             rs = stmt.executeQuery("SELECT * from Artikel Where id_artikel="+artikelID);
             rs.next();
-            Artikel a=new Artikel(this,rs.getLong("id_artikel"),rs.getString("bezeichnung"),rs.getTimestamp("zeitstempel"),rs.getString("user_parameter"));
+            Artikel a=new Artikel(rs.getLong("id_artikel"),rs.getString("bezeichnung"),rs.getTimestamp("zeitstempel"),rs.getString("user_parameter"));
             rs.close();
             stmt.close();
             return a;

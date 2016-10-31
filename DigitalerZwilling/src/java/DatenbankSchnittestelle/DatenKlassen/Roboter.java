@@ -14,7 +14,6 @@ import java.util.List;
  * @author user
  */
 public class Roboter {
-    private final DatenSchnittstelle data;
     private final long id_Roboter;
     private final String beschreibung;
     private final int stoerung;
@@ -25,8 +24,7 @@ public class Roboter {
     private final Timestamp zeitstempel;
     private final String user_Parameter;
 
-    public Roboter(DatenSchnittstelle data, long id_Roboter, String beschreibung, int stoerung, int x, int y, int z, int ausrichtung, Timestamp zeitstempel, String user_Parameter) {
-        this.data = data;
+    public Roboter(long id_Roboter, String beschreibung, int stoerung, int x, int y, int z, int ausrichtung, Timestamp zeitstempel, String user_Parameter) {
         this.id_Roboter = id_Roboter;
         this.beschreibung = beschreibung;
         this.stoerung = stoerung;
@@ -74,16 +72,11 @@ public class Roboter {
         return user_Parameter;
     }
     
-    public List<Gelenk> getGelenke(){
-        return this.data._Roboter_Gelenk(id_Roboter);
-    }
-    public List<Sektor> getSektor(){
-        return this.data._Roboter_Sektor(id_Roboter);
-    }
+
 
     @Override
     public String toString() {
-        return super.toString()+"  :  Roboter{" + "data=" + data + ", id_Roboter=" + id_Roboter + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", x=" + x + ", y=" + y + ", z=" + z + ", ausrichtung=" + ausrichtung + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+        return super.toString()+"  :  Roboter{"  + ", id_Roboter=" + id_Roboter + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", x=" + x + ", y=" + y + ", z=" + z + ", ausrichtung=" + ausrichtung + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
     }
     
 }

@@ -14,7 +14,6 @@ import java.sql.Timestamp;
  */
 public class HubQuerPodest {
     
-    private final DatenSchnittstelle data;
     private final long id_HubQuerPodest;
     private final int oben;
     private final int unten;
@@ -23,8 +22,7 @@ public class HubQuerPodest {
     private final Timestamp zeitstempel;
     private final String user_Parameter;
 
-    public HubQuerPodest(DatenSchnittstelle data, long id_HubQuerPodest, int oben, int unten, int mittig, int moter, Timestamp zeitstempel, String user_Parameter) {
-        this.data = data;
+    public HubQuerPodest( long id_HubQuerPodest, int oben, int unten, int mittig, int moter, Timestamp zeitstempel, String user_Parameter) {
         this.id_HubQuerPodest = id_HubQuerPodest;
         this.oben = oben;
         this.unten = unten;
@@ -61,13 +59,10 @@ public class HubQuerPodest {
     public String getUser_Parameter() {
         return user_Parameter;
     }
-    public Sektor getSektor(){
-        return this.data._HubQuerPodest_Sektor(id_HubQuerPodest);
-    }
 
     @Override
     public String toString() {
-        return super.toString()+"  :  HubQuerPodest{" + "data=" + data + ", id_HubQuerPodest=" + id_HubQuerPodest + ", oben=" + oben + ", unten=" + unten + ", mittig=" + mittig + ", moter=" + moter + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+        return super.toString()+"  :  HubQuerPodest{"  + ", id_HubQuerPodest=" + id_HubQuerPodest + ", oben=" + oben + ", unten=" + unten + ", mittig=" + mittig + ", moter=" + moter + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
     }
     
     

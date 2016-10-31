@@ -13,7 +13,6 @@ import java.sql.Timestamp;
  * @author user
  */
 public class Sensor {
-    private final DatenSchnittstelle data;
     private final long id_Sensor;
     private final String beschreibung;
     private final int stoerung;
@@ -22,8 +21,7 @@ public class Sensor {
     private final Timestamp zeitstempel;
     private final String user_Parameter;
 
-    public Sensor(DatenSchnittstelle data, long id_Sensor, String beschreibung, int stoerung, String phy_adresse, int zustand, Timestamp zeitstempel, String user_Parameter) {
-        this.data = data;
+    public Sensor(long id_Sensor, String beschreibung, int stoerung, String phy_adresse, int zustand, Timestamp zeitstempel, String user_Parameter) {
         this.id_Sensor = id_Sensor;
         this.beschreibung = beschreibung;
         this.stoerung = stoerung;
@@ -61,13 +59,11 @@ public class Sensor {
         return user_Parameter;
     }
     
-    public Sektor getSektor(){
-        return this.data._Sensor_Sektor(id_Sensor);
-    }
+
 
     @Override
     public String toString() {
-        return super.toString()+"  :  Sensor{" + "data=" + data + ", id_Sensor=" + id_Sensor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", phy_adresse=" + phy_adresse + ", zustand=" + zustand + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+        return super.toString()+"  :  Sensor{"  + ", id_Sensor=" + id_Sensor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", phy_adresse=" + phy_adresse + ", zustand=" + zustand + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
     }
     
 }

@@ -14,7 +14,6 @@ import java.util.List;
  * @author user
  */
 public class Warentraeger {
-    private final DatenSchnittstelle data;
     private final long id_Warentraeger;
     private final String bezeichnung;
     private final int stoerung;
@@ -24,8 +23,7 @@ public class Warentraeger {
     private final Timestamp zeitstempel;
     private final String user_Parameter;
 
-    public Warentraeger(DatenSchnittstelle data, long id_Warentraeger, String bezeichnung, int stoerung, String rFID_inhalt, int montagezustand, int abstand_mm, Timestamp zeitstempel, String user_Parameter) {
-        this.data = data;
+    public Warentraeger(long id_Warentraeger, String bezeichnung, int stoerung, String rFID_inhalt, int montagezustand, int abstand_mm, Timestamp zeitstempel, String user_Parameter) {
         this.id_Warentraeger = id_Warentraeger;
         this.bezeichnung = bezeichnung;
         this.stoerung = stoerung;
@@ -70,20 +68,11 @@ public class Warentraeger {
         return user_Parameter;
     }
     
-    public List<Artikel> getArtikel(){
-        return this.data._Warentraeger_Artikel(id_Warentraeger);
-    }
-    
-    public List<Sektor> getSektor(){
-        return this.data._Warentraeger_Sektor(id_Warentraeger);
-    }
-    public List<Transportband> getTransportband(){
-        return this.data._Warentraeger_Transportband(id_Warentraeger);
-    }
+
 
     @Override
     public String toString() {
-        return super.toString()+"  :  Warentraeger{" + "data=" + data + ", id_Warentraeger=" + id_Warentraeger + ", bezeichnung=" + bezeichnung + ", stoerung=" + stoerung + ", rFID_inhalt=" + rFID_inhalt + ", montagezustand=" + montagezustand + ", abstand_mm=" + abstand_mm + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+        return super.toString()+"  :  Warentraeger{" +  ", id_Warentraeger=" + id_Warentraeger + ", bezeichnung=" + bezeichnung + ", stoerung=" + stoerung + ", rFID_inhalt=" + rFID_inhalt + ", montagezustand=" + montagezustand + ", abstand_mm=" + abstand_mm + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
     }
     
 }

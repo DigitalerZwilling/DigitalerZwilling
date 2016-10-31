@@ -31,7 +31,7 @@ public interface DatenSchnittstelle {
      * @return alle Warentraeger auf denen dieser Artikel ist
      * 
      */
-    public List<Warentraeger> _Artikel_Warentraeger(long artikelID);
+    public List<Long> getArtikelWarentraegerIDs(long artikelID);
     
     //Warentraeger---------------------------------------------------------------------------
 
@@ -40,21 +40,21 @@ public interface DatenSchnittstelle {
      * @param warentraegerID
      * @return Liste
      */
-    public List<Artikel> _Warentraeger_Artikel(long warentraegerID);
+    public List<Long> getWarentraegerArtikelIDs(long warentraegerID);
 
     /**
      *  Relation: Transportband auf dem der Warentraeger ist
      * @param warentraegerID
      * @return Liste(Länge 1 oder 0)
      */
-    public List<Transportband> _Warentraeger_Transportband(long warentraegerID);
+    public List<Long> getWarentraegerTransportbandID(long warentraegerID);
 
     /**
      * Relation: In welchem Sektor ist der Warentraeger
      * @param warentraegerID
      * @return Liste(Länge 1 oder 0)
      */
-    public List<Sektor> _Warentraeger_Sektor(long warentraegerID);
+    public List<Long> getWarentraegerSektorID(long warentraegerID);
     //-------------------------------------------------------------------------
     //Transportband------------------------------------------------------------
 
@@ -64,21 +64,21 @@ public interface DatenSchnittstelle {
      * @param transportbandID
      * @return Liste
      */
-    public List<Warentraeger> _Transportband_Warentraeger(long transportbandID);
+    public List<Long> getTransportbandWarentraegerIDs(long transportbandID);
 
     /**
      * Relation:Transportband ist vor Sektor
      * @param transportbandID
      * @return Sektor
      */
-    public Sektor _Transportband_vor_Sektor(long transportbandID);
+    public Long getTransportbandVorSektorID(long transportbandID);
 
     /**
      * Relation: Transportband ist nach Sektor
      * @param transportbandID
      * @return Sektor
      */
-    public Sektor _Transportband_nach_Sektor(long transportbandID);
+    public Long getTransportbandNachSektorID(long transportbandID);
     //---------------------------------------------------------------------------
     //Sektor--------------------------------------------------------------------
 
@@ -87,76 +87,76 @@ public interface DatenSchnittstelle {
      * @param sektorID
      * @return Liste
      */
-    public List<Warentraeger> _Sektor_Warentraeger(long sektorID);
+    public List<Long> getSektorWarentraegerIDs(long sektorID);
 
     /**
      * Relation: Sektor vor Transportband(gehoert also zu Transportband_nach_Sektor)
      * @param sektorID
      * @return Liste
      */
-    public List<Transportband> _Sektor_vor_Transportband(long sektorID);
+    public List<Long> getSektorVorTransportbandIDs(long sektorID);
 
     /**
      * Relation: Sektor nach Transportband(gehoert also zu Transportband_vor_Sektor)
      * @param sektorID
      * @return Liste
      */
-    public List<Transportband> _Sektor_nach_Transportband(long sektorID);
+    public List<Long> getSektorNachTransportbandIDs(long sektorID);
 
     /**
      * Relation: HubPodeste im Sektor
      * @param sektorID
      * @return Liste
      */
-    public List<HubPodest> _Sektor_HubPodest(long sektorID);
+    public List<Long> getSektorHubPodestIDs(long sektorID);
 
     /**
      * Relation: HubQuerPodeste im Sektor
      * @param sektorID
      * @return Liste
      */
-    public List<HubQuerPodest> _Sektor_HubQuerPodest(long sektorID);
+    public List<Long> getSektorHubQuerPodestIDs(long sektorID);
 
     /**
      * Relation: Sensoren im Sektor
      * @param sensorID
      * @return Liste
      */
-    public List<Sensor> _Sektor_Sensor(long sensorID);
+    public List<Long> getSektorSensorIDs(long sensorID);
 
     /**
      * Relation: Roboter im Sektor
      * @param sektorID
      * @return Liste
      */
-    public List<Roboter> _Sektor_Roboter(long sektorID);
+    public List<Long> getSektorRoboterIDs(long sektorID);
     //---------------------------------------------------------------------------
     //HubPodest-------------------------------------------------------------------
 
     /**
      * Relation: Sektor vom hubpodest
      * @param hubPodestId
-     * @return Sektor
+     * @return SektorID
      */
-    public Sektor _HubPodest_Sektor(long hubPodestId);
+    public Long getHubPodestSektorID(long hubPodestId);
     //----------------------------------------------------------------------------
     //HubQuerPodest---------------------------------------------------------------
 
     /**
      * Relation: Sektor vom HubQuerPodest
      * @param hubQuerPodestId
-     * @return Sektor
+     * @return SektorID
      */
-    public Sektor _HubQuerPodest_Sektor(long hubQuerPodestId);
+    public Long getHubQuerPodestSektorID(long hubQuerPodestId);
     //---------------------------------------------------------------------------
     //Sensor---------------------------------------------------------------------
 
     /**
      * Relation: Sektor vom Sensor
      * @param sensorID
-     * @return Sektor
+     * @return SektorID
      */
-    public Sektor _Sensor_Sektor(long sensorID);
+    public Long getSensorSektorID(long sensorID);
     //---------------------------------------------------------------------------
     //Roboter-------------------------------------------------------------------
 
@@ -165,23 +165,23 @@ public interface DatenSchnittstelle {
      * @param roboterID
      * @return Liste(Länge 1 oder 0)
      */
-    public List<Sektor> _Roboter_Sektor(long roboterID);
+    public List<Long> getRoboterSektorID(long roboterID);
 
     /**
      * Relation Gelenke vom Roboter
      * @param roboterID
      * @return Liste
      */
-    public List<Gelenk> _Roboter_Gelenk(long roboterID);
+    public List<Long> getRoboterGelenkIDs(long roboterID);
     //----------------------------------------------------------------------------
     //Gelenk---------------------------------------------------------------------
 
     /**
      * Relation Roboter vom Gelenk
      * @param gelenkID
-     * @return Roboter;
+     * @return RoboterID;
      */
-    public Roboter _Gelenk_Roboter(long gelenkID);
+    public Long getGelenkRoboterID(long gelenkID);
     //----------------------------------------------------------------------------
     //Abfragen fuer Einzelobjekt--------------------------------------------------
 

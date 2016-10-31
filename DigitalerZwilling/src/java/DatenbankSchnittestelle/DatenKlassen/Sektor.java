@@ -14,7 +14,6 @@ import java.util.List;
  * @author user
  */
 public class Sektor {
-    private final DatenSchnittstelle data;
     private final long id_Sektor;
     private final String beschreibung;
     private final int stoerung;
@@ -25,8 +24,7 @@ public class Sektor {
     private final Timestamp zeitstempel;
     private final String user_Parameter;
 
-    public Sektor(DatenSchnittstelle data, long id_Sektor, String beschreibung, int stoerung, int x, int y, int z, int ausrichtung, Timestamp zeitstempel, String user_Parameter) {
-        this.data = data;
+    public Sektor( long id_Sektor, String beschreibung, int stoerung, int x, int y, int z, int ausrichtung, Timestamp zeitstempel, String user_Parameter) {
         this.id_Sektor = id_Sektor;
         this.beschreibung = beschreibung;
         this.stoerung = stoerung;
@@ -74,31 +72,11 @@ public class Sektor {
         return user_Parameter;
     }
     
-    public List<HubPodest> getHubPodeste(){
-        return this.data._Sektor_HubPodest(id_Sektor);
-    }
-    public List<HubQuerPodest> getHubQuerPodeste(){
-        return this.data._Sektor_HubQuerPodest(id_Sektor);
-    }
-    public List<Roboter> getRoboter(){
-        return this.data._Sektor_Roboter(id_Sektor);
-    }
-    public List<Sensor> getSensor(){
-        return this.data._Sektor_Sensor(id_Sektor);
-    }
-    public List<Transportband> getVorTransportbaender(){
-        return this.data._Sektor_nach_Transportband(id_Sektor);
-    }
-    public List<Transportband> getNachTransportbaender(){
-        return this.data._Sektor_vor_Transportband(id_Sektor);
-    }
-    public List<Warentraeger> getWarentraeger(){
-        return this.data._Sektor_Warentraeger(id_Sektor);
-    }
+
 
     @Override
     public String toString() {
-        return super.toString()+"  :  Sektor{" + "data=" + data + ", id_Sektor=" + id_Sektor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", x=" + x + ", y=" + y + ", z=" + z + ", ausrichtung=" + ausrichtung + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+        return super.toString()+"  :  Sektor{"  + ", id_Sektor=" + id_Sektor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", x=" + x + ", y=" + y + ", z=" + z + ", ausrichtung=" + ausrichtung + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
     }
     
 }

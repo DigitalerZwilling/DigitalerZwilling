@@ -13,15 +13,13 @@ import java.sql.Timestamp;
  * @author chris
  */
 public class HubPodest {
-    private final DatenSchnittstelle data;
     private final long id_HubPodest;
     private final int oben;
     private final int unten;
     private final Timestamp zeitstempel;
     private final String user_Parameter;
 
-    public HubPodest(DatenSchnittstelle data, long id_HubPodest, int oben, int unten, Timestamp zeitstempel, String user_Parameter) {
-        this.data = data;
+    public HubPodest( long id_HubPodest, int oben, int unten, Timestamp zeitstempel, String user_Parameter) {
         this.id_HubPodest = id_HubPodest;
         this.oben = oben;
         this.unten = unten;
@@ -29,9 +27,7 @@ public class HubPodest {
         this.user_Parameter = user_Parameter;
     }
 
-    public DatenSchnittstelle getData() {
-        return data;
-    }
+
 
     public long getId_HubPodest() {
         return id_HubPodest;
@@ -53,13 +49,11 @@ public class HubPodest {
         return user_Parameter;
     }
     
-    public Sektor getSektor(){
-        return data._HubPodest_Sektor(id_HubPodest);
-    }
+    
 
     @Override
     public String toString() {
-        return super.toString()+"  :  HubPodest{" + "data=" + data + ", id_HubPodest=" + id_HubPodest + ", oben=" + oben + ", unten=" + unten + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+        return super.toString()+"  :  HubPodest{" + ", id_HubPodest=" + id_HubPodest + ", oben=" + oben + ", unten=" + unten + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
     }
     
 }

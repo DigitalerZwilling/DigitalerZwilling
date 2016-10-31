@@ -14,7 +14,6 @@ import java.util.List;
  * @author user
  */
 public class Transportband {
-    private final DatenSchnittstelle data;
     private final long id_Sensor;
     private final String beschreibung;
     private final int stoerung;
@@ -23,8 +22,7 @@ public class Transportband {
     private final Timestamp zeitstempel;
     private final String user_Parameter;
 
-    public Transportband(DatenSchnittstelle data, long id_Sensor, String beschreibung, int stoerung, int laenge, int geschwindigkeit, Timestamp zeitstempel, String user_Parameter) {
-        this.data = data;
+    public Transportband(long id_Sensor, String beschreibung, int stoerung, int laenge, int geschwindigkeit, Timestamp zeitstempel, String user_Parameter) {
         this.id_Sensor = id_Sensor;
         this.beschreibung = beschreibung;
         this.stoerung = stoerung;
@@ -62,19 +60,11 @@ public class Transportband {
         return user_Parameter;
     }
     
-    public Sektor getSektorVorMe(){
-        return this.data._Transportband_nach_Sektor(id_Sensor);
-    }
-    public Sektor getSektorNachMe(){
-        return this.data._Transportband_vor_Sektor(id_Sensor);
-    }
-    public List<Warentraeger> getWarentraeger(){
-        return this.data._Transportband_Warentraeger(id_Sensor);
-    } 
+
 
     @Override
     public String toString() {
-        return super.toString()+"  :  Transportband{" + "data=" + data + ", id_Sensor=" + id_Sensor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", laenge=" + laenge + ", geschwindigkeit=" + geschwindigkeit + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
+        return super.toString()+"  :  Transportband{"  + ", id_Sensor=" + id_Sensor + ", beschreibung=" + beschreibung + ", stoerung=" + stoerung + ", laenge=" + laenge + ", geschwindigkeit=" + geschwindigkeit + ", zeitstempel=" + zeitstempel + ", user_Parameter=" + user_Parameter + '}';
     }
     
 }
